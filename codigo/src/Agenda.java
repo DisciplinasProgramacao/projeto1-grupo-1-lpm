@@ -30,68 +30,68 @@ public class Agenda {
 		Data dtValida = new Data();
 		switch (opcao) {
 
-		case "1":
-			System.out.println("Criar Compromisso:");
-			System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
-			dtValida = Data.verificaData(obj.nextLine());
+			case "1":
+				System.out.println("Criar Compromisso:");
+				System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
+				dtValida = Data.verificaData(obj.nextLine());
 
-			if (dtValida.isDataValida() == true) {
-				criarCompromisso(dtValida);
-				for (Compromisso comp : compromissos) {
-					if (comp.getnDia() == dtValida.getDiaAno()) {
-						System.out.print("Compromisso:");
-						comp.imprimeCompromisso(comp);
+				if (dtValida.isDataValida() == true) {
+					criarCompromisso(dtValida);
+					for (Compromisso comp : compromissos) {
+						if (comp.getnDia() == dtValida.getDiaAno()) {
+							System.out.print("Compromisso:");
+							comp.imprimeCompromisso(comp);
+						}
+						menu();
 					}
+				} else {
+					System.out.println(excessaw);
+					System.out.println("Digite 'Enter' para continuar...\n");
+					opcoes(obj.nextLine());
+				}
+				break;
+			case "2":
+				System.out.println("Cadastrar compromissos peri�dicos");
+				System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
+				dtValida = Data.verificaData(obj.nextLine());
+				if (dtValida.isDataValida() == true) {
+					criarCompromissoPeriodico(dtValida);
 					menu();
+				} else {
+					System.out.println(excessaw);
+					System.out.println("Digite 'Enter' para continuar...\n");
+					opcoes(obj.nextLine());
 				}
-			} else {
-				System.out.println(excessaw);
-				System.out.println("Digite 'Enter' para continuar...\n");
-				opcoes(obj.nextLine());
-			}
-			break;
-		case "2":
-			System.out.println("Cadastrar compromissos peri�dicos");
-			System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
-			dtValida = Data.verificaData(obj.nextLine());
-			if (dtValida.isDataValida() == true) {
-				criarCompromissoPeriodico(dtValida);
-				menu();
-			} else {
-				System.out.println(excessaw);
-				System.out.println("Digite 'Enter' para continuar...\n");
-				opcoes(obj.nextLine());
-			}
-			break;
-		case "3":
-			System.out.println("Fornecer relat�rio de compromissos entre datas:");
-			Data dtInicial = new Data();
-			Data dtFinal = new Data();
-			System.out.println("Entre com data inicial no formato DD/MM/AAAA: ");
-			dtInicial = Data.verificaData(obj.nextLine());
-			System.out.println("Entre com data final no formato DD/MM/AAAA: ");
-			dtFinal = Data.verificaData(obj.nextLine());
+				break;
+			case "3":
+				System.out.println("Fornecer relat�rio de compromissos entre datas:");
+				Data dtInicial = new Data();
+				Data dtFinal = new Data();
+				System.out.println("Entre com data inicial no formato DD/MM/AAAA: ");
+				dtInicial = Data.verificaData(obj.nextLine());
+				System.out.println("Entre com data final no formato DD/MM/AAAA: ");
+				dtFinal = Data.verificaData(obj.nextLine());
 
-			if (dtInicial.isDataValida() && dtFinal.isDataValida() && dtInicial.getDiaAno() < dtFinal.getDiaAno()) {
-				for (Compromisso comp : compromissos) {
-					if (comp.getnDia() >= dtInicial.getDiaAno() && comp.getnDia() <= dtFinal.getDiaAno()) {
-						comp.imprimeCompromisso(comp);
-					} else {
-						System.out.println(excessaw);
-						System.out.println("Digite 'Enter' para continuar...\n");
-						opcoes(obj.nextLine());
+				if (dtInicial.isDataValida() && dtFinal.isDataValida() && dtInicial.getDiaAno() < dtFinal.getDiaAno()) {
+					for (Compromisso comp : compromissos) {
+						if (comp.getnDia() >= dtInicial.getDiaAno() && comp.getnDia() <= dtFinal.getDiaAno()) {
+							comp.imprimeCompromisso(comp);
+						} else {
+							System.out.println(excessaw);
+							System.out.println("Digite 'Enter' para continuar...\n");
+							opcoes(obj.nextLine());
+						}
+
 					}
-
 				}
-			}
 
-			break;
-		case "F":
-			teste();
-			break;
-		default:
-			System.out.println("op��o invalida!");
-			menu();
+				break;
+			case "F":
+				teste();
+				break;
+			default:
+				System.out.println("op��o invalida!");
+				menu();
 		}
 		obj.close();
 	}
@@ -142,9 +142,9 @@ public class Agenda {
 	public static void teste() {
 		Scanner obj = new Scanner(System.in);
 		System.out.println("entre dia  + 'Enter' +  mes + 'Enter' + ano + 'Enter'.");
-		int dia = Integer.parseInt(obj.nextLine(););
-		int mes = Integer.parseInt(obj.nextLine(););
-		int ano = Integer.parseInt(obj.nextLine(););
+		int dia = Integer.parseInt(obj.nextLine());
+		int mes = Integer.parseInt(obj.nextLine());
+		int ano = Integer.parseInt(obj.nextLine());
 
 		System.out.print(Data.diaAno(dia, mes, ano));
 
