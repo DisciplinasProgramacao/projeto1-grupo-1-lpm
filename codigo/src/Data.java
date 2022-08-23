@@ -1,3 +1,4 @@
+/** Classe para tratar datas solicitadas pela aplicaÃ§Ã£o */
 public class Data {
 
 	private int dia;
@@ -7,6 +8,13 @@ public class Data {
 	private String diaSemana;
 	private boolean dataValida=false;
 
+	/**
+	 * Contrutor da classe Data, recebe como parÃ¢metro os elementos da data validando as informaÃ§Ãµes passadas por parÃ¢metro. Ao receber data invÃ¡lida, retorna 0
+	 * Data vÃ¡lida exemplo: 01/01/2022
+	 * @param dia Dia para a data
+	 * @param mes MÃªs para a data
+	 * @param ano Ano para a data
+	 */
 	public Data(int dia, int mes, int ano) {
 
 		this.dia = dia;
@@ -14,9 +22,15 @@ public class Data {
 		this.ano = ano;
 		this.diaAno = diaAno(dia, mes, ano);
 		this.diaSemana = DiaSemana(dia, mes, ano);
-		this.dataValida = (dia > 0) ? (true):(false);
-		//this.dataValida = (dia == mes == ano > 0) ? (true):(false) ;
+		this.dataValida = (dia > 0) && (mes > 0) && (ano > 0) ? (true):(false);
 	}
+
+	/**
+	 * Contrutor da classe Data, recebe como parÃ¢metro um inteiro que representa o dia incrementado a partir do dia 01/01/0001. Exemplo, o dia 24/08/2022 seria 738391.
+	 * Ao receber um dia invÃ¡lido, retorna 0
+	 * Data vÃ¡lida exemplo: 01/01/2022
+	 * @param diaAno Valor inteiro referente Ã  data selecionada
+	 */
 	public Data(int diaAno) {
 		int[] dataconvert = dataDiaAno(diaAno);
 		this.dia = dataconvert[0];
@@ -24,15 +38,20 @@ public class Data {
 		this.ano = dataconvert[2];
 		this.diaAno = diaAno(dia, mes, ano);
 		this.diaSemana = DiaSemana(dia, mes, ano);
-		this.dataValida = (dia > 0) ? (true):(false);
-		//this.dataValida = (dia == mes == ano > 0) ? (true):(false) ;
+		this.dataValida = (dia > 0) && (mes > 0) && (ano > 0) ? (true):(false);
 	}
 
+	/** Construtor simples para criaÃ§Ã£o de um objeto da classe Data*/
 	public Data() {
 
 	}
 
-	public static int ehBissexto(int ano) {
+	/**
+	 * MÃ©todo para verificar se o ano passado como parÃ¢metro Ã© bissexto
+	 * @param ano Ano de uma data desejada
+	 * @return Retorna 1 quando Ã© bissexto e 0 quando nÃ£o Ã© bissexto
+	 */
+	public static int verificaBissexto(int ano) {
 		int anoBis = 0;
 		if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0)) {
 			anoBis = 1;
@@ -40,17 +59,31 @@ public class Data {
 		return anoBis;
 	}
 
-	public static String DiaSemana(int d, int m, int a) {
-		String[] dSemana = { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
-				"Sábado" };
-		int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
-		if (m < 3)
-			a -= 1;
-		return dSemana[(a + a / 4 - a / 100 + a / 400 + t[m - 1] + d) % 7];
+	/**
+	 * MÃ©todo para retornar dia da semana em que a data passada como parÃ¢metro ocorre
+	 * @param dia Dia da data
+	 * @param mes MÃªs da data
+	 * @param ano Ano da data
+	 * @return Dia da semana em que a data ocorre, como por exemplo "Segunda-feira"
+	 */
+	public static String DiaSemana(int dia, int mes, int ano) {
+		String[] dSemana = { "Domingo", "Segunda-feira", "Terï¿½a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
+				"Sï¿½bado" };
+		int diaDaSemanaMes[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+		if (mes < 3)
+			ano -= 1;
+		return dSemana[(ano + ano / 4 - ano / 100 + ano / 400 + diaDaSemanaMes[mes - 1] + dia) % 7];
 	}
 
+	/**
+	 * MÃ©todo para verificar a quantidade de dias no mÃªs, validando inclusive se o ano Ã© bissexto
+	 * algoritmo inspirado no algoritmo
+	 * @param mes Mes da data
+	 * @param ano Ano da Data
+	 * @return Quantidade de dias no mÃªs
+	 */
 	public static int diasMes(int mes, int ano) {
-		int dMes = 31 - ((mes == 2) ? (3 - ehBissexto(ano)) : (((mes - 1) % 7) % 2));
+		int dMes = 31 - ((mes == 2) ? (3 - verificaBissexto(ano)) : (((mes - 1) % 7) % 2));
 		return dMes;
 	}
 
@@ -62,36 +95,42 @@ public class Data {
 				diaAno += diasMes(m, a);
 			}
 		}
-	//	System.out.println("acum " + diaAno);
+		//	System.out.println("acum " + diaAno);
 		for (int m = 1; m < mes; m++) {
 			diaAno += diasMes(m, ano);
 		}
-		
+
 		diaAno = diaAno + dia;
 		return diaAno;
 	}
 
 	public static int[] dataDiaAno(int diaAno) {
 		int diaAnoTemp = diaAno;
-		int mesTemp = 1;
-	 int ano = 1;
-		
-		while (diaAnoTemp - diasMes(mesTemp, ano) > 0) {
-			diaAnoTemp = diaAnoTemp - diasMes(mesTemp, ano);
-			mesTemp++;
-			if (mesTemp > 12) {
-				mesTemp = 1;
-				ano = ano + 1;
+		if ( diaAno >= 1){
+			int mesTemp = 1;
+			int ano = 1;
+
+			while (diaAnoTemp - diasMes(mesTemp, ano) > 0) {
+				diaAnoTemp = diaAnoTemp - diasMes(mesTemp, ano);
+				mesTemp++;
+				if (mesTemp > 12) {
+					mesTemp = 1;
+					ano = ano + 1;
+				}
 			}
+
+			int[] dataDiaAnoTemp = {diaAnoTemp, mesTemp, ano};
+			return dataDiaAnoTemp;
+		}
+		else {
+			int[] dataDiaAnoTemp = {0, 0, 0};
+			return dataDiaAnoTemp;
 		}
 
-		int[] dataDiaAnoTemp = {diaAnoTemp, mesTemp, ano };
-
-		return dataDiaAnoTemp;
 	}
 
-	
-	
+
+
 	public static Data verificaData(String dataEntr) {
 		// boolean verData = false;
 		int dia = 0;
@@ -110,7 +149,7 @@ public class Data {
 					dataAvaliada.setMes(mes);
 					dataAvaliada.setAno(ano);
 					Data diaAgenda = new Data(dia, mes, ano);
-					System.out.println("É uma data válida! ");
+					System.out.println("ï¿½ uma data vï¿½lida! ");
 					System.out.println(
 							"Dia " + diaAgenda.getDia() + "/" + diaAgenda.getMes() + "/" + diaAgenda.getAno());
 					System.out.println("Dia semana = " + Data.DiaSemana(dia, mes, ano) + "\n");
@@ -119,7 +158,7 @@ public class Data {
 			}
 		}
 		return dataAvaliada;
-	} //Retorna dia 0 mês 0 ano 0 se inválida.
+	} //Retorna dia 0 mï¿½s 0 ano 0 se invï¿½lida.
 
 	public static boolean ehValorValido(int dia, int mes, int ano) {
 		boolean vVale = false;
@@ -128,25 +167,25 @@ public class Data {
 				vVale = true;
 			} else {
 				if (dia <= 0 || dia > diasMes(mes, ano)) {
-		//			System.out.println("O dia " + dia + " não é valido para o mês " + mes);
-		//			System.out.println("O mês " + mes + " tem " + diasMes(mes, ano) + " dias.");
-					Agenda.excessaw=Agenda.excessaw+"\"O dia \" + dia + \" não é valido para o mês \" + mes\n" + "O mês " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
+					//			System.out.println("O dia " + dia + " nï¿½o ï¿½ valido para o mï¿½s " + mes);
+					//			System.out.println("O mï¿½s " + mes + " tem " + diasMes(mes, ano) + " dias.");
+					Agenda.excessaw=Agenda.excessaw+"\"O dia \" + dia + \" nï¿½o ï¿½ valido para o mï¿½s \" + mes\n" + "O mï¿½s " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
 				}
 				if (mes <= 0 || mes > 12) {
-		//			System.out.println("O mês " + mes + " não é valido.");
-					Agenda.excessaw=Agenda.excessaw+"O mês " + mes + " não é valido.\n";
+					//			System.out.println("O mï¿½s " + mes + " nï¿½o ï¿½ valido.");
+					Agenda.excessaw=Agenda.excessaw+"O mï¿½s " + mes + " nï¿½o ï¿½ valido.\n";
 				}
 				if (ano == 2038) {
-		//			System.out.println(
-		//					"O ano " + ano + " não é contemplado na avaliação. Problema Y2K38 - Gangnam Style. :-) ");
-					Agenda.excessaw=Agenda.excessaw+"O ano " + ano + " não é contemplado na avaliação. Problema Y2K38 - Gangnam Style. :-) \n";
+					//			System.out.println(
+					//					"O ano " + ano + " nï¿½o ï¿½ contemplado na avaliaï¿½ï¿½o. Problema Y2K38 - Gangnam Style. :-) ");
+					Agenda.excessaw=Agenda.excessaw+"O ano " + ano + " nï¿½o ï¿½ contemplado na avaliaï¿½ï¿½o. Problema Y2K38 - Gangnam Style. :-) \n";
 				}
 				if (ano > 10000) {
-		//			System.out.println("Ano " + ano + " é inválido!");
-		//			System.out.println("Os anos pós 10.000 não são avaliados.");
-					Agenda.excessaw=Agenda.excessaw+"Ano " + ano + " é inválido!\n";
-					Agenda.excessaw=Agenda.excessaw+"Os anos pós 10.000 não são avaliados.\n";
-					
+					//			System.out.println("Ano " + ano + " ï¿½ invï¿½lido!");
+					//			System.out.println("Os anos pï¿½s 10.000 nï¿½o sï¿½o avaliados.");
+					Agenda.excessaw=Agenda.excessaw+"Ano " + ano + " ï¿½ invï¿½lido!\n";
+					Agenda.excessaw=Agenda.excessaw+"Os anos pï¿½s 10.000 nï¿½o sï¿½o avaliados.\n";
+
 				}
 			}
 		}
@@ -162,8 +201,8 @@ public class Data {
 					if (caracter >= '0' && caracter <= '9') {
 						ehNum = true;
 					} else {
-				//		System.out.println("Apenas números no formato DD/MM/AAAA são válidos! ");
-						Agenda.excessaw=Agenda.excessaw+"Apenas números no formato DD/MM/AAAA são válidos!\n ";
+						//		System.out.println("Apenas nï¿½meros no formato DD/MM/AAAA sï¿½o vï¿½lidos! ");
+						Agenda.excessaw=Agenda.excessaw+"Apenas nï¿½meros no formato DD/MM/AAAA sï¿½o vï¿½lidos!\n ";
 						ehNum = false;
 						return ehNum;
 					}
@@ -173,7 +212,7 @@ public class Data {
 		return ehNum;
 	}
 
-	
+
 	public int getDia() {
 		return dia;
 	}
@@ -197,7 +236,7 @@ public class Data {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
-	
+
 	public int getDiaAno() {
 		return diaAno;
 	}
@@ -205,7 +244,7 @@ public class Data {
 	public void setDiaAno(int diaAno) {
 		this.diaAno = diaAno;
 	}
-	
+
 	public String getDiaSemana() {
 		return diaSemana;
 	}
@@ -222,7 +261,4 @@ public class Data {
 		this.dataValida = dataValida;
 	}
 
-
-
-	
 }
