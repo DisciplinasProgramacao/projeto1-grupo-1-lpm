@@ -151,11 +151,14 @@ public class Data {
             int[] dataDiaAnoTemp = { 0, 0, 0 };
             return dataDiaAnoTemp;
         }
-
     }
 
+    /**
+     * Método verifica se a data informada por parâmetro é uma data válida
+     * @param dataEntr Data a ser verificada
+     * @return Retorna objetod a classe Data
+     */
     public static Data verificaData(String dataEntr) {
-        // boolean verData = false;
         int dia = 0;
         int mes = 0;
         int ano = 0;
@@ -163,79 +166,79 @@ public class Data {
 
         String[] vetDataStr = dataEntr.split("/");
         if (vetDataStr.length == 3) {
-            if (ehNumeric(vetDataStr) != false) {
+            if (verificaNumero(vetDataStr) != false) {
                 dia = Integer.parseInt(vetDataStr[0]);
                 mes = Integer.parseInt(vetDataStr[1]);
                 ano = Integer.parseInt(vetDataStr[2]);
-                if (ehValorValido(dia, mes, ano) == true) {
+                if (verificaValores(dia, mes, ano) == true) {
                     dataAvaliada.setDia(dia);
                     dataAvaliada.setMes(mes);
                     dataAvaliada.setAno(ano);
                     Data diaAgenda = new Data(dia, mes, ano);
                     System.out.println("� uma data v�lida! ");
                     System.out.println(
-                            "Dia " + diaAgenda.getDia() + "/" + diaAgenda.getMes() + "/" + diaAgenda.getAno());
+                    "Dia " + diaAgenda.getDia() + "/" + diaAgenda.getMes() + "/" + diaAgenda.getAno());
                     System.out.println("Dia semana = " + Data.DiaSemana(dia, mes, ano) + "\n");
                     dataAvaliada = diaAgenda;
                 }
             }
         }
         return dataAvaliada;
-    } // Retorna dia 0 m�s 0 ano 0 se inv�lida.
-
-    public static boolean ehValorValido(int dia, int mes, int ano) {
-        boolean vVale = false;
-        if (dia > 0 && mes > 0 && ano > 0) {
-            if (dia <= diasMes(mes, ano) && mes <= 12 && ano < 10000) {
-                vVale = true;
-            } else {
-                if (dia <= 0 || dia > diasMes(mes, ano)) {
-                    // System.out.println("O dia " + dia + " n�o � valido para o m�s " + mes);
-                    // System.out.println("O m�s " + mes + " tem " + diasMes(mes, ano) + " dias.");
-                    Agenda.excessaw = Agenda.excessaw + "\"O dia \" + dia + \" n�o � valido para o m�s \" + mes\n"
-                            + "O m�s " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
-                }
-                if (mes <= 0 || mes > 12) {
-                    // System.out.println("O m�s " + mes + " n�o � valido.");
-                    Agenda.excessaw = Agenda.excessaw + "O m�s " + mes + " n�o � valido.\n";
-                }
-                if (ano == 2038) {
-                    // System.out.println(
-                    // "O ano " + ano + " n�o � contemplado na avalia��o. Problema Y2K38 - Gangnam
-                    // Style. :-) ");
-                    Agenda.excessaw = Agenda.excessaw + "O ano " + ano
-                            + " n�o � contemplado na avalia��o. Problema Y2K38 - Gangnam Style. :-) \n";
-                }
-                if (ano > 10000) {
-                    // System.out.println("Ano " + ano + " � inv�lido!");
-                    // System.out.println("Os anos p�s 10.000 n�o s�o avaliados.");
-                    Agenda.excessaw = Agenda.excessaw + "Ano " + ano + " � inv�lido!\n";
-                    Agenda.excessaw = Agenda.excessaw + "Os anos p�s 10.000 n�o s�o avaliados.\n";
-
-                }
-            }
-        }
-        return vVale;
     }
 
-    public static boolean ehNumeric(String[] strData) {
-        boolean ehNum = false;
-        for (int i = 0; i < strData.length; i++) {
-            if (strData[i] != null || !strData[i].equals("")) {
-                for (int c = 0; c < strData[i].length(); c++) {
-                    char caracter = strData[i].charAt(c);
-                    if (caracter >= '0' && caracter <= '9') {
-                        ehNum = true;
-                    } else {
-                        // System.out.println("Apenas n�meros no formato DD/MM/AAAA s�o v�lidos! ");
-                        Agenda.excessaw = Agenda.excessaw + "Apenas n�meros no formato DD/MM/AAAA s�o v�lidos!\n ";
-                        ehNum = false;
-                        return ehNum;
-                    }
+    /**
+     * Metodo verifica se os valores de dia, mês e ano passados como parâmetro formam uma data coesa
+     * @param dia Dia da data
+     * @param mes Mês da data
+     * @param ano Ano da data
+     * @return Retorna true caso os parâmetros formem uma data coesa e false caso contrário
+     */
+    public static boolean verificaValores(int dia, int mes, int ano) {
+        boolean valorValido = false;
+        if (dia > 0 && mes > 0 && ano > 0) {
+            if (dia <= diasMes(mes, ano) && mes <= 12 && ano < 10000) {
+                valorValido = true;
+            } else {
+                if (dia <= 0 || dia > diasMes(mes, ano)) {
+                    Agenda.excecao = Agenda.excecao + "\"O dia \" + dia + \" n�o � valido para o m�s \" + mes\n"
+                    + "O m�s " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
+                }
+                if (mes <= 0 || mes > 12) {
+                    Agenda.excecao = Agenda.excecao + "O m�s " + mes + " n�o � valido.\n";
+                }
+                if (ano == 2038) {
+                    Agenda.excecao = Agenda.excecao + "O ano " + ano
+                    + " n�o � contemplado na avalia��o. Problema Y2K38 - Gangnam Style. :-) \n";
+                }
+                if (ano > 10000) {
+                    Agenda.excecao = Agenda.excecao + "Ano " + ano + " � inv�lido!\n";
+                    Agenda.excecao = Agenda.excecao + "Os anos p�s 10.000 n�o s�o avaliados.\n";
                 }
             }
         }
-        return ehNum;
+        return valorValido;
+    }
+
+    /**
+     * Método verifica se a data informada possui apenas números em sua composição
+     * @param strData Array de Strings com dia, mês e ano em popsições diferentes
+     * @return Retorna true caso seja numérico e false caso contrário
+     */
+    public static boolean verificaNumero(String[] strData) {
+        boolean numValido = false;
+        
+        for (int i = 0; i < strData.length; i++) {
+            //Regex para validar caracteres
+            if(strData[i].matches("[0-9]*")){
+                numValido = true;
+            }
+            else {
+                Agenda.excecao = Agenda.excecao + "Apenas n�meros no formato DD/MM/AAAA s�o v�lidos!\n ";
+                numValido = false;
+                return numValido;
+            }
+        }
+        return numValido;
     }
 
     public int getDia() {
