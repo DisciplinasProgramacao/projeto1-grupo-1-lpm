@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Agenda {
 
     static ArrayList<Compromisso> compromissos = new ArrayList<Compromisso>();
-    static String excessaw = "";
+    static String excecao = "";
 
     public static void main(String[] args) {
         menu();
@@ -45,7 +45,7 @@ public class Agenda {
                         menu();
                     }
                 } else {
-                    System.out.println(excessaw);
+                    System.out.println(excecao);
                     System.out.println("Digite 'Enter' para continuar...\n");
                     opcoes(obj.nextLine());
                 }
@@ -58,7 +58,7 @@ public class Agenda {
                     criarCompromissoPeriodico(dtValida);
                     menu();
                 } else {
-                    System.out.println(excessaw);
+                    System.out.println(excecao);
                     System.out.println("Digite 'Enter' para continuar...\n");
                     opcoes(obj.nextLine());
                 }
@@ -77,7 +77,7 @@ public class Agenda {
                         if (comp.getnDia() >= dtInicial.getDiaAno() && comp.getnDia() <= dtFinal.getDiaAno()) {
                             comp.imprimeCompromisso(comp);
                         } else {
-                            System.out.println(excessaw);
+                            System.out.println(excecao);
                             System.out.println("Digite 'Enter' para continuar...\n");
                             opcoes(obj.nextLine());
                         }
@@ -127,7 +127,7 @@ public class Agenda {
 
         for (int i = 0; i < recorrenteTemp; i++) {
             Compromisso novoCompromisso = new Compromisso(dataVerificada.getDiaAno() + intervalTemp * i,
-                    assuntoTemp + "_" + (i + 1));
+            assuntoTemp + "_" + (i + 1));
             compromissos.add(novoCompromisso);
         }
         System.out.println("Compromissos cadastrados:");
