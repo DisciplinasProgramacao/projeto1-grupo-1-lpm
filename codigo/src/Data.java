@@ -98,6 +98,15 @@ public class Data {
         return dMes;
     }
 
+    /**
+     * Método para retornar o dia acumulado de uma data. Exemplo, a data 24/08/2022 seria
+     * 738391.
+     * @param dia Dia da data
+     * @param mes Mês da data
+     * @param ano Ano da data
+     * @return Retorna o inteiro referente à data passada como parâmetro
+     */
+
     public static int diaAno(int dia, int mes, int ano) {
         int diaAno = 0;
 
@@ -114,6 +123,12 @@ public class Data {
         diaAno = diaAno + dia;
         return diaAno;
     }
+
+    /**
+     *Método para retornar a data de um dia acumulado. Exemplo, o dia 738391 seria a data 24/08/2022
+     * @param diaAno Inteiro do dia acumulado
+     * @return Retorna a data referente ao dia acumulado
+     */
 
     public static int[] dataDiaAno(int diaAno) {
         int diaAnoTemp = diaAno;
