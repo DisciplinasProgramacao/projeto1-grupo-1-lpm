@@ -50,7 +50,7 @@ public class Data {
 	 * @param ano Ano de uma data desejada
 	 * @return Retorna 1 quando é bissexto e 0 quando não é bissexto
 	 */
-	public static int verificaBissexto(int ano) {
+	public int verificaBissexto(int ano) {
 		int anoBis = 0;
 		if (((ano % 4 == 0) && (ano % 100 != 0)) || (ano % 400 == 0)) {
 			anoBis = 1;
@@ -66,8 +66,8 @@ public class Data {
 	 * @return Dia da semana em que a data ocorre, como por exemplo "Segunda-feira"
 	 */
 	public static String DiaSemana(int dia, int mes, int ano) {
-		String[] dSemana = { "Domingo", "Segunda-feira", "Ter�a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
-				"S�bado" };
+		String[] dSemana = { "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
+				"Sabado" };
 		int diaDaSemanaMes[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
 		if (mes < 3)
 			ano -= 1;
@@ -148,7 +148,7 @@ public class Data {
 					dataAvaliada.setMes(mes);
 					dataAvaliada.setAno(ano);
 					Data diaAgenda = new Data(dia, mes, ano);
-					System.out.println("� uma data v�lida! ");
+					System.out.println("� uma data valida! ");
 					System.out.println(
 							"Dia " + diaAgenda.getDia() + "/" + diaAgenda.getMes() + "/" + diaAgenda.getAno());
 					System.out.println("Dia semana = " + Data.DiaSemana(dia, mes, ano) + "\n");
