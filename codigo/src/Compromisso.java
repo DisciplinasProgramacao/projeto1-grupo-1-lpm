@@ -1,42 +1,44 @@
 
 public class Compromisso {
+	private int nDia;
+	private String assunto;
 
-    private int nDia;
-    private String assunto;
+	public Compromisso() {
 
-    public Compromisso() {
+	}
 
-    }
+	public Compromisso(int ndia, String assunto) {
+		this.nDia = ndia;
+		this.assunto = assunto;
 
-    public Compromisso(int ndia, String assunto) {
-        this.nDia = ndia;
-        this.assunto = assunto;
-    }
+	}
 
-    public void imprimeCompromisso(Compromisso atual) {
+	public static Compromisso[] criaLoteCompromissos(int ndia, String assunto, int recorrente, int intevalo) {
+		Compromisso[] LoteCompromissos = new Compromisso[recorrente];
+		
+		for (int i = 0; i < recorrente; i++) {
+			LoteCompromissos[i] = new Compromisso(ndia + (i * intevalo), i + 1 + "/" + recorrente + "_" + assunto); //
 
-        Data dt = new Data(atual.getnDia());
-        String dtFormat = String.format("%02d", dt.getDia()) + "/" + String.format("%02d", dt.getMes()) + "/"
-                + String.format("%4d", dt.getAno());
-        System.out.print("Dia: " + atual.getnDia() + " - " + dtFormat + " - " + dt.getDiaSemana());
-        System.out.println(" Assunto " + atual.getAssunto());
+		}
+		return LoteCompromissos;
+	}
 
-    }
 
-    public int getnDia() {
-        return nDia;
-    }
 
-    public void setnDia(int ndia) {
-        this.nDia = ndia;
-    }
+	public int getnDia() {
+		return nDia;
+	}
 
-    public String getAssunto() {
-        return assunto;
-    }
+	public void setnDia(int ndia) {
+		this.nDia = ndia;
+	}
 
-    public void setAssunto(String assunto) {
-        this.assunto = assunto;
-    }
+	public String getAssunto() {
+		return assunto;
+	}
+
+	public void setAssunto(String assunto) {
+		this.assunto = assunto;
+	}
 
 }
