@@ -183,7 +183,7 @@ public class Data {
             }
         }
         else{
-            Principal.excecao = Principal.excecao + "\" O formato digitado para data esta incorreto\n";
+            Principal.excecao = Principal.excecao + "O formato digitado para data esta incorreto. Formato correto: DD/MM/AAAA\n";
         }
         return dataAvaliada;
     }
