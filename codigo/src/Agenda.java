@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Agenda {
+
 	private ArrayList<Compromisso> agenda = new ArrayList<Compromisso>();
 	private int compReg = 0;
 
@@ -11,6 +12,10 @@ public class Agenda {
 		}
 	}
 */
+
+	/**
+	 * Construtor simples para criação de um objeto da classe Agenda
+	 */
 	public Agenda() {
 
 	}
