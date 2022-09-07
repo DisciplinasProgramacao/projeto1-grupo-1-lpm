@@ -11,14 +11,13 @@ public class Principal {
 
 	public static void menu() {
 		Scanner obj = new Scanner(System.in);
-		// Runtime.getRuntime().exec("clear");
 
 		System.out.println("\nAGENDA COMPROMISSOS\n");
 
 		System.out.println("1 - Criar compromisso em datas especificas.");
-		System.out.println("2 - Cadastrar compromissos peri�dicos:");
+		System.out.println("2 - Cadastrar compromissos periodicos:");
 		System.out.println("3 - Fornecer relatorio de compromissos entre datas.");
-		System.out.println("Entre com o numero correspondente � fun��o da Agenda: ou f para sair:");
+		System.out.println("Entre com o numero correspondente a funcao da Agenda: ou f para sair:");
 		System.out.println("\n");
 		opcoes(obj.nextLine());
 		obj.close();
@@ -58,6 +57,7 @@ public class Principal {
 				}
 				menu();
 				break;
+
 			case "2":
 				System.out.println("Criar Compromisso:");
 				System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
@@ -69,7 +69,7 @@ public class Principal {
 					assuntoTemp = obj.nextLine();
 					System.out.println("Entre com quantidade de recorr�ncias do compromisso: ");
 					recorre = Integer.parseInt(obj.nextLine());
-					System.out.println("Entre com o intervalo de dias entre as ocorr�ncias");
+					System.out.println("Entre com o intervalo de dias entre as ocorrencias");
 					interval = Integer.parseInt(obj.nextLine());
 
 					agenda.setAgenda(Compromisso.criaLoteCompromissos(dtValida.getDiaAno(), assuntoTemp, recorre, interval));
@@ -88,7 +88,7 @@ public class Principal {
 				menu();
 				break;
 			case "3":
-				System.out.println("Fornecer relat�rio de compromissos entre datas:");
+				System.out.println("Fornecer relatorio de compromissos entre datas:");
 				Data dtInicial = new Data();
 				Data dtFinal = new Data();
 				System.out.println("Entre com data inicial no formato DD/MM/AAAA: ");
@@ -112,7 +112,7 @@ public class Principal {
 				break;
 
 			default:
-				System.out.println("op��o invalida!");
+				System.out.println("opcao invalida!");
 				menu();
 		}
 		obj.close();

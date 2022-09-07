@@ -79,8 +79,8 @@ public class Data {
      * @return Dia da semana em que a data ocorre, como por exemplo "Segunda-feira"
      */
     public static String DiaSemana(int dia, int mes, int ano) {
-        String[] dSemana = { "Domingo", "Segunda-feira", "Ter�a-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
-                "S�bado" };
+        String[] dSemana = { "Domingo", "Segunda-feira", "Terca-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira",
+                "Sabado" };
         int diaDaSemanaMes[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
         if (mes < 3)
             ano -= 1;
@@ -182,6 +182,9 @@ public class Data {
                 }
             }
         }
+        else{
+            Principal.excecao = Principal.excecao + "\" O formato digitado para data esta incorreto\n";
+        }
         return dataAvaliada;
     }
 
@@ -199,20 +202,21 @@ public class Data {
                 valorValido = true;
             } else {
                 if (dia <= 0 || dia > diasMes(mes, ano)) {
-                    Principal.excecao = Principal.excecao + "\"O dia \" + dia + \" n�o � valido para o m�s \" + mes\n"
-                    + "O m�s " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
+                    Principal.excecao = Principal.excecao + "\"O dia \" + dia + \" nao e valido para o mes \" + mes\n"
+                    + "O mes " + mes + " tem " + diasMes(mes, ano) + " dias.\n";
                 }
                 if (mes <= 0 || mes > 12) {
-                    Principal.excecao = Principal.excecao + "O m�s " + mes + " n�o � valido.\n";
+                    Principal.excecao = Principal.excecao + "O mes " + mes + " nao e valido.\n";
                 }
                 if (ano == 2038) {
                     Principal.excecao = Principal.excecao + "O ano " + ano
-                    + " n�o � contemplado na avalia��o. Problema Y2K38 - Gangnam Style. :-) \n";
+                    + " nao e contemplado na avaliacao. Problema Y2K38 - Gangnam Style. :-) \n";
                 }
                 if (ano > 10000) {
-                    Principal.excecao = Principal.excecao + "Ano " + ano + " � inv�lido!\n";
-                    Principal.excecao = Principal.excecao + "Os anos p�s 10.000 n�o s�o avaliados.\n";
+                    Principal.excecao = Principal.excecao + "Ano " + ano + " � invalido!\n";
+                    Principal.excecao = Principal.excecao + "Os anos pos 10.000 nao sao avaliados.\n";
                 }
+
             }
         }
         return valorValido;
@@ -232,7 +236,7 @@ public class Data {
                 numValido = true;
             }
             else {
-                Principal.excecao = Principal.excecao + "Apenas n�meros no formato DD/MM/AAAA s�o v�lidos!\n ";
+                Principal.excecao = Principal.excecao + "Apenas numeros no formato DD/MM/AAAA sao validos!\n ";
                 numValido = false;
                 return numValido;
             }
