@@ -1,4 +1,6 @@
-
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 public class DataTest {
 
@@ -11,12 +13,12 @@ public class DataTest {
 
     @Test
     public void testAnoBissexto() {
-        assertEquals(true, d.verificaBissexto(2024));
+        assertEquals(1, d.verificaBissexto(2024));
     }
 
     @Test
     public void testAnoNaoBissexto() {
-        assertEquals(false, d.verificaBissexto(2023));
+        assertEquals(0, d.verificaBissexto(2023));
     }
 
 }
