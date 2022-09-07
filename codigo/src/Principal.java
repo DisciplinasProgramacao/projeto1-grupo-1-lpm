@@ -37,12 +37,10 @@ public class Principal {
 				System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
 				dtValida = Data.verificaData(obj.nextLine());
 
-				// Avaliar junto ao MR a validação da data informada aqui
-
-				System.out.println("Entre com um assunto para compromisso nessa data");
-				assuntoTemp = obj.nextLine();
-
 				if (dtValida.getDataValida() == true) {
+
+					System.out.println("Entre com um assunto para compromisso nessa data");
+					assuntoTemp = obj.nextLine();
 
 					agenda.setAgenda(Compromisso.criaLoteCompromissos(dtValida.getDiaAno(), assuntoTemp, 1, 0));
 
@@ -64,17 +62,17 @@ public class Principal {
 				System.out.println("Criar Compromisso:");
 				System.out.println("Entre com uma data no formato DD/MM/AAAA: ");
 				dtValida = Data.verificaData(obj.nextLine());
-				System.out.println("Entre com um assunto para compromisso nessa data");
-				assuntoTemp = obj.nextLine();
-				System.out.println("Entre com quantidade de recorr�ncias do compromisso: ");
-				recorre = Integer.parseInt(obj.nextLine());
-				System.out.println("Entre com o intervalo de dias entre as ocorr�ncias");
-				interval = Integer.parseInt(obj.nextLine());
 
 				if (dtValida.getDataValida() == true) {
+					
+					System.out.println("Entre com um assunto para compromisso nessa data");
+					assuntoTemp = obj.nextLine();
+					System.out.println("Entre com quantidade de recorr�ncias do compromisso: ");
+					recorre = Integer.parseInt(obj.nextLine());
+					System.out.println("Entre com o intervalo de dias entre as ocorr�ncias");
+					interval = Integer.parseInt(obj.nextLine());
 
-					agenda.setAgenda(
-							Compromisso.criaLoteCompromissos(dtValida.getDiaAno(), assuntoTemp, recorre, interval));
+					agenda.setAgenda(Compromisso.criaLoteCompromissos(dtValida.getDiaAno(), assuntoTemp, recorre, interval));
 					for (Compromisso comp : agenda.getAgenda()) {
 						if (comp.getnDia() == dtValida.getDiaAno()) {
 							System.out.print("Compromisso:");
