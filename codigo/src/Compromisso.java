@@ -9,7 +9,6 @@ public class Compromisso {
 	 */
 
 	public Compromisso() {
-
 	}
 
 	/**
@@ -20,9 +19,9 @@ public class Compromisso {
 	 */
 
 	public Compromisso(int ndia, String assunto) {
+		
 		this.nDia = ndia;
 		this.assunto = assunto;
-
 	}
 
 	/**
@@ -34,13 +33,12 @@ public class Compromisso {
 	 * @param intevalo Intervalo de dias entre as repetições
 	 * @return Array de compromissos
 	 */
-
 	public static Compromisso[] criaLoteCompromissos(int ndia, String assunto, int recorrente, int intevalo) {
+		
 		Compromisso[] LoteCompromissos = new Compromisso[recorrente];
 		
 		for (int i = 0; i < recorrente; i++) {
 			LoteCompromissos[i] = new Compromisso(ndia + (i * intevalo), i + 1 + "/" + recorrente + "_" + assunto); //
-
 		}
 		return LoteCompromissos;
 	}
