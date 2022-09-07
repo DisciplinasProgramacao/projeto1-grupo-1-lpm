@@ -8,6 +8,14 @@ public class Data {
     private String diaSemana;
     private boolean dataValida = false;
 
+
+    /** 
+     * Construtor simples para criação de um objeto da classe Data
+     */
+    public Data() {
+
+    }
+
     /**
      * Contrutor da classe Data, recebe como parâmetro os elementos da data
      * validando as informações passadas por parâmetro. Ao receber data inválida,
@@ -45,11 +53,6 @@ public class Data {
         this.diaAno = diaAno(dia, mes, ano);
         this.diaSemana = DiaSemana(dia, mes, ano);
         this.dataValida = (dia > 0) && (mes > 0) && (ano > 0) ? (true) : (false);
-    }
-
-    /** Construtor simples para criação de um objeto da classe Data */
-    public Data() {
-
     }
 
     /**
@@ -156,7 +159,7 @@ public class Data {
     /**
      * Método verifica se a data informada por parâmetro é uma data válida
      * @param dataEntr Data a ser verificada
-     * @return Retorna objetod a classe Data
+     * @return Retorna objeto da classe Data
      */
     public static Data verificaData(String dataEntr) {
         int dia = 0;
@@ -175,10 +178,6 @@ public class Data {
                     dataAvaliada.setMes(mes);
                     dataAvaliada.setAno(ano);
                     Data diaAgenda = new Data(dia, mes, ano);
-                    System.out.println("� uma data v�lida! ");
-                    System.out.println(
-                    "Dia " + diaAgenda.getDia() + "/" + diaAgenda.getMes() + "/" + diaAgenda.getAno());
-                    System.out.println("Dia semana = " + Data.DiaSemana(dia, mes, ano) + "\n");
                     dataAvaliada = diaAgenda;
                 }
             }
@@ -281,7 +280,7 @@ public class Data {
         this.diaSemana = diaSemana;
     }
 
-    public boolean isDataValida() {
+    public boolean getDataValida() {
         return dataValida;
     }
 

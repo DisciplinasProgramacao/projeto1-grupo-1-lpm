@@ -3,15 +3,7 @@ import java.util.ArrayList;
 public class Agenda {
 
 	private ArrayList<Compromisso> agenda = new ArrayList<Compromisso>();
-	private int compReg = 0;
-
-/*	public Agenda(Compromisso[] compromissos) {
-		for (Compromisso com : compromissos) {
-			this.compReg++;
-			this.agenda.add(com);
-		}
-	}
-*/
+	private int quantCompromissosAgendados = 0;
 
 	/**
 	 * Construtor simples para criação de um objeto da classe Agenda
@@ -24,20 +16,25 @@ public class Agenda {
 		return agenda;
 	}
 
+	/**
+	 * Método popula a agenda com o arraylist de compromissos informado por parâmetro 
+	 * @param compromissos Arraylist de compromissos da classe Compromisso
+	 */
+
 	public void setAgenda(Compromisso[] compromissos) {
-		for (Compromisso com : compromissos) {
-			this.compReg++;
-			this.agenda.add(com);
+		for (Compromisso comp : compromissos) {
+			this.quantCompromissosAgendados++;
+			this.agenda.add(comp);
 		}
 		
 	}
 
-	public int getCompReg() {
-		return compReg;
+	public int getquantCompromissosAgendados() {
+		return quantCompromissosAgendados;
 	}
 
-	public void setCompReg(int compReg) {
-		this.compReg = compReg;
+	public void setquantCompromissosAgendados(int quantCompromissosAgendados) {
+		this.quantCompromissosAgendados = quantCompromissosAgendados;
 	}
 
 }
