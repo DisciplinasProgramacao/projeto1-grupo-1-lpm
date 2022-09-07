@@ -17,7 +17,7 @@ public class Agenda {
 	}
 
 	/**
-	 * Método popula a agenda com o arraylist de compromissos informado por parâmetro 
+	 * Método popula a agenda com o arraylist de compromissos informados por parâmetro. 
 	 * @param compromissos Arraylist de compromissos da classe Compromisso
 	 */
 
